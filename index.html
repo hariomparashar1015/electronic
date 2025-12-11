@@ -1,263 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HP Electronics</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css"/> </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HP Electronics - Innovations for Life</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    </head>
 <style>
-/* Custom styles largely retained, but Bootstrap classes handle the layout */
+/* ** MINIMAL CSS FOR KEY STYLING & OVERRIDES ** */
+:root {
+    --primary-color: #111;
+    --secondary-color: #ffcc00; /* Gold/Yellow Accent */
+    --light-bg: #f5f5f5;
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background: #f9f9f9;
-  color: #333;
+    background: var(--light-bg);
+    scroll-behavior: smooth;
+    padding-top: 60px; /* Account for fixed navbar height */
 }
 
-/* Header adjusted to use flexbox (d-flex) with Bootstrap utilities */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: #111;
-  color: #fff;
+/* --- Navigation & Header --- */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    min-height: 60px; /* Ensure consistent height */
+
 }
 
-header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--secondary-color) !important;
 }
 
-/* Navigation is now a dropdown/offcanvas for mobile and expanded for desktop */
-/* Original nav styles are minimal now, relying on Bootstrap Navbar */
-nav ul {
-  list-style: none;
-  display: flex; /* Kept for desktop view */
-  gap: 1.5rem;
+.navbar-nav .nav-link {
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
-nav a {
-  color: #fff;
-  text-decoration: none;
-  transition: 0.3s;
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+    color: var(--secondary-color) !important;
+    border-bottom: 2px solid var(--secondary-color);
 }
 
-nav a:hover {
-  color: #ffcc00;
-}
-
-/* Hero section uses Bootstrap classes for padding and text alignment */
+/* --- Hero Section --- */
 .hero {
-  text-align: center;
-  padding: 5rem 2rem;
-  background: linear-gradient(to right, #111, #333);
-  color: #fff;
+    padding: 6rem 2rem; /* Reduced padding slightly */
+    background: linear-gradient(135deg, var(--primary-color) 0%, #333 100%);
+    color: #fff;
+    min-height: 50vh;
 }
 
-.hero .btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  background: #ffcc00;
-  color: #111;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
+.hero .display-3 {
+    font-weight: 700;
+    color: var(--secondary-color);
 }
 
-/* Products section uses BS5 container and grid */
-.products {
-  padding: 3rem 2rem;
-  text-align: center;
+.btn-primary-custom {
+    padding: 0.9rem 2.5rem;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
 }
 
-/* Original product-grid styles are replaced by Bootstrap's row/col system */
-/* .product-grid { ... } */
+.btn-primary-custom:hover {
+    background: #e6b800;
+    transform: translateY(-3px);
+}
+
+/* --- Product Cards --- */
+.products h2 {
+    font-weight: 600;
+    border-bottom: 3px solid var(--secondary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 3rem;
+}
 
 .product-card {
-  background: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-bottom: 1.5rem; /* Add spacing between rows on smaller screens */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .product-card img {
-  width: 100%;
-  border-radius: 5px;
-  height: 15rem; /* Keep image height consistent */
-  object-fit: cover; /* Ensures images cover the area without distortion */
+    border-radius: 8px;
+    height: 12rem;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.about, .contact {
-  padding: 3rem 2rem;
-  text-align: center;
+.product-card:hover img {
+    transform: scale(1.05);
 }
 
-/* Form layout uses Bootstrap form and flex/margin utilities */
+.product-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    color: var(--primary-color);
+}
+
+.product-card p {
+    font-weight: 700;
+    color: #cc0000;
+    margin-bottom: 1rem;
+}
+
+.product-card .btn-dark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: background 0.3s ease;
+}
+
+.product-card .btn-dark:hover {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    border-color: var(--secondary-color);
+}
+
+/* --- About & Contact --- */
+.about {
+    padding: 5rem 2rem;
+}
+
+.about p {
+    line-height: 1.8;
+    max-width: 800px;
+}
+
+.contact {
+    padding: 5rem 2rem;
+    background: #fff;
+}
+
 form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 400px;
-  margin: auto;
+    max-width: 500px;
+    padding: 2rem;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+
 }
 
-/* Form elements use Bootstrap form-control class */
 form input, form textarea {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
 }
-
-form button {
-  padding: 0.75rem;
-  background: #111;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-form button:hover {
-  background: #ffcc00;
-  color: #111;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background: #111;
-  color: #fff;
-  margin-top: 2rem;
-}
+/* Removed original body/global styling that duplicates Bootstrap */
 </style>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand logo" href="#">HP Electronics</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger active" aria-current="page" href="#home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#products">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <section id="home" class="hero mb-5">
-    <div class="container" style="height: 350px;">
-      <h1 class="display-4 pt-5">Welcome to HP Electronics</h1>
-      <p class="lead">Your one-stop shop for the latest gadgets & accessories</p>
-      <a href="#products" class="btn">Shop Now</a>
-    </div>
-  </section>
-
-  <section id="products" class="products container py-5 ">
-    <h2 class="mb-4 mt-5">Featured Products</h2>
-
-    <div class="row g-4"> <div class="col-md-6 col-lg-4">
-        <div class="product-card">
-          <img class="img-fluid" src="1.jpg" alt="Smart T.V">
-          <h3 class="mt-3">Smart T.V</h3>
-          <p>20000₹</p>
-          <button class="btn btn-dark">Add to Cart</button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand logo" href="#">HP Electronics</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="product-card">
-          <img class="img-fluid" src="2.jpg" alt="A.c">
-          <h3 class="mt-3">A.C</h3>
-          <p>35000₹</p>
-          <button class="btn btn-dark">Add to Cart</button>
+    </nav>
+
+    <section id="home" class="hero text-center d-flex align-items-center">
+        <div class="container">
+            <h1 class="display-3">Welcome to HP Electronics</h1>
+            <p class="lead fs-4 mt-3">Your one-stop shop for the latest gadgets & smart accessories</p>
+            <a href="#products" class="btn btn-primary-custom mt-4">Shop Now</a>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="product-card">
-          <img class="img-fluid" src="3.jpg" alt="Fridge">
-          <h3 class="mt-3">fridge</h3>
-          <p>45000₹</p>
-          <button class="btn btn-dark">Add to Cart</button>
+    </section>
+
+    <section id="products" class="products container py-5">
+        <h2 class="text-center mx-auto">Featured Products</h2>
+        <div class="row g-5">
+            <div class="col-md-6 col-lg-4 text-center">
+                <div class="product-card bg-white">
+                    <img class="img-fluid" src="1.jpg" alt="Smart T.V" loading="lazy">
+                    <h3 class="mt-3">Smart T.V</h3>
+                    <p>20,000₹</p>
+                    <button class="btn btn-dark">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 text-center">
+                <div class="product-card bg-white">
+                    <img class="img-fluid" src="2.jpg" alt="A.C" loading="lazy">
+                    <h3 class="mt-3">Inverter A.C</h3>
+                    <p>35,000₹</p>
+                    <button class="btn btn-dark">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 text-center">
+                <div class="product-card bg-white">
+                    <img class="img-fluid" src="3.jpg" alt="Fridge" loading="lazy">
+                    <h3 class="mt-3">Smart Fridge</h3>
+                    <p>45,000₹</p>
+                    <button class="btn btn-dark">Add to Cart</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+        
+        <div class="row g-5 mt-4">
+            <div class="col-md-6 col-lg-4 text-center">
+                <div class="product-card bg-white">
+                    <img class="img-fluid" src="4.jpg" alt="Laptop" loading="lazy">
+                    <h3 class="mt-2">High-Performance Laptop</h3>
+                    <p>65,000₹</p>
+                    <button class="btn btn-dark">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 text-center">
+                <div class="product-card bg-white">
+                    <img class="img-fluid" src="5.jpg" alt="Smartphone" loading="lazy">
+                    <h3 class="mt-3">Latest Smartphone</h3>
+                    <p>22,000₹</p>
+                    <button class="btn btn-dark">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 text-center">
+                <div class="product-card bg-white">
+                    <img class="img-fluid" src="6.jpg" alt="Headphones" loading="lazy">
+                    <h3 class="mt-3">Wireless Headphones</h3>
+                    <p>5,000₹</p>
+                    <button class="btn btn-dark">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about bg-light">
+        <div class="container text-center">
+            <h2 class="mb-4">About HP Electronics</h2>
+            <p class="mx-auto text-muted fs-5">At HP Electronics, we bring you the latest and greatest in technology. From laptops to smartphones, we make sure you stay ahead of the curve. Our mission is to create technology that makes life better for everyone, everywhere - a principle that guides our innovation across personal systems, printing, and 3D solutions. As a world leader, we constantly redefine the future of work with uncompromising quality and customer focus.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="mb-5 text-center">Get In Touch</h2>
+            <form class="shadow-sm mx-auto"> <input type="text" class="form-control mb-3" placeholder="Your Name" required> <input type="email" class="form-control mb-3" placeholder="Your Email" required>
+                <textarea class="form-control mb-4" rows="5" placeholder="Your Message"  style="resize:none"></textarea> <button type="submit" class="btn btn-primary-custom w-100">Send Message</button> </form>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="m-0">&copy; <span id="year">2025</span> HP Electronics. All rights reserved. | Powered by Innovation</p>
+        </div>
+    </footer>
+
     
-    <div class="row g-4 mt-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="product-card">
-          <img class="img-fluid" src="4.jpg" alt="Laptop">
-          <h3 class="mt-2">High-Performance Laptop</h3>
-          <p>65000₹</p>
-          <button class="btn btn-dark">Add to Cart</button>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="product-card">
-          <img class="img-fluid" src="5.jpg" alt="Smartphone">
-          <h3 class="mt-5">Latest Smartphone</h3>
-          <p>22000₹</p>
-          <button class="btn btn-dark">Add to Cart</button>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="product-card">
-          <img class="img-fluid" src="6.jpg" alt="Headphones">
-          <h3 class="mt-5">Wireless Headphones</h3>
-          <p>5000₹</p>
-          <button class="btn btn-dark">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-  </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Use modern JS for scroll-trigger functionality
+        document.querySelectorAll('.js-scroll-trigger').forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const navbarCollapse = document.getElementById('navbarNav');
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                });
+                bsCollapse.hide();
+            });
+        });
 
-  <section id="about" class="about bg-light py-5">
-    <div class="container">
-      <h2 class="mb-3 mt-5">About HP Electronics</h2>
-      <p class="mx-auto" >At HP Electronics, we bring you the latest and greatest in technology. From laptops to smartphones, we make sure you stay ahead of the curve.
-      Our mission is to create technology that makes life better for everyone, everywhere a principle that guides our innovation across personal systems, printing, and 3D solutions. As a world leader, we constantly redefine the future of work.</p>
-    </div>
-  </section>
-
-  <section id="contact" class="contact py-5">
-    <div class="container">
-      <h2 class="mb-4 mt-5">Contact Us</h2>
-      <form>
-        <input type="text" class="form-control" placeholder="Your Name" required>
-        <input type="email" class="form-control" placeholder="Your Email" required>
-        <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
-        <button type="submit" class="btn btn-dark">Send</button>
-      </form>
-    </div>
-  </section>
-
-  <footer class="bg-dark text-white mt-auto py-3">
-    <div class="container">
-      <p class="m-0">&copy; 2025 HP Electronics. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        // Set current year in the footer dynamically
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script type="text/javascript">
         $('.js-scroll-trigger').click(function () {
             $('.navbar-collapse').collapse('hide');
